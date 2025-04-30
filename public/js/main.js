@@ -280,5 +280,61 @@ document.querySelector('.map-container').addEventListener('mouseleave', (e) => {
   img.style.transform = 'scale(1)';
   img.style.transformOrigin = 'center center';
 });
-
+document.addEventListener('DOMContentLoaded', function() {
+  // Menu mobile
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav');
+  
+  menuToggle.addEventListener('click', function() {
+      nav.classList.toggle('active');
+  });
+  
+  // Cerrar menu al hacer click en un link
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+          nav.classList.remove('active');
+      });
+  });
+  
+  // Video background
+  const videoBg = document.querySelector('.video-bg');
+  if(videoBg) {
+      videoBg.addEventListener('loadeddata', function() {
+          setTimeout(() => {
+              videoBg.classList.add('active');
+          }, 500);
+      });
+  }
+  
+  // Scroll suave
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if(targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if(targetElement) {
+              window.scrollTo({
+                  top: targetElement.offsetTop - 80,
+                  behavior: 'smooth'
+              });
+          }
+      });
+  });
+  
+  // Header scroll effect
+  const header = document.querySelector('.header');
+  if(header) {
+      window.addEventListener('scroll', function() {
+          if(window.scrollY > 100) {
+              header.classList.add('scrolled');
+          } else {
+              header.classList.remove('scrolled');
+          }
+      });
+  }
+});
 });

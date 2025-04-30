@@ -1,22 +1,22 @@
 const express = require('express');
 const path = require('path');
-const app = express();
 
-// Configuración básica
-app.set('views', path.join(__dirname, 'views'));
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Configuración de EJS
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Middleware para archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Única ruta necesaria
+// Rutas
 app.get('/', (req, res) => {
-  res.render('index', {
-    title: 'The Palace - Historia',
-    page: 'home'
-  });
+    res.render('index');
 });
 
 // Iniciar servidor
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Sitio funcionando en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
