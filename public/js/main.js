@@ -342,4 +342,51 @@ document.querySelectorAll('.location-gallery .gallery-item').forEach(item => {
       // Implementar lightbox aquí
   });
 });
+// Tabs de Indumentaria
+const attireTabs = document.querySelectorAll('.attire-tab');
+attireTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Remover active de todos
+        attireTabs.forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.attire-content').forEach(c => c.classList.remove('active'));
+        
+        // Agregar active al seleccionado
+        this.classList.add('active');
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+    });
+});
+// Tabs de Tareas
+const taskTabs = document.querySelectorAll('.task-tab');
+taskTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Remover active de todos
+        taskTabs.forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.task-content').forEach(c => c.classList.remove('active'));
+        
+        // Agregar active al seleccionado
+        this.classList.add('active');
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+    });
+});
+
+// Efecto parallax para las tarjetas Why Us
+const whyUsCards = document.querySelectorAll('.why-us-card');
+whyUsCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 15;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 15;
+        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+    
+    card.addEventListener('mouseenter', () => {
+        card.style.transition = 'all 0.1s ease';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        card.style.transition = 'all 0.5s ease';
+    });
+});
 });
