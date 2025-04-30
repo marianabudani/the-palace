@@ -335,6 +335,11 @@ document.addEventListener('DOMContentLoaded', function() {
               header.classList.remove('scrolled');
           }
       });
-  }
+    }
+  });
+document.querySelectorAll('.location-gallery .gallery-item').forEach(item => {
+  item.addEventListener('click', function() {
+      // Implementar lightbox aquí
+  });
 });
 });
