@@ -282,21 +282,22 @@ document.querySelector('.map-container').addEventListener('mouseleave', (e) => {
   img.style.transformOrigin = 'center center';
 });
 document.addEventListener('DOMContentLoaded', function() {
-  // Menu mobile
-  const menuToggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.nav');
-  
-  menuToggle.addEventListener('click', function() {
-      nav.classList.toggle('active');
-  });
-  
-  // Cerrar menu al hacer click en un link
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-          nav.classList.remove('active');
-      });
-  });
+
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', function() {
+    navLinks.classList.toggle('active');
+    this.classList.toggle('open');
+});
+
+// Cerrar menú al hacer click en un link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('open');
+    });
+});
   
   // Video background
   const videoBg = document.querySelector('.video-bg');
