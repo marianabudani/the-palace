@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // 1. Código para los videos de fondo
   const videos = [
       { id: 'video1', file: 'rombo_rojo.mp4' },
-      { id: 'video2', file: 'triangulo_blanco.mp4' },
       { id: 'video3', file: 'triangulo_rojo.mp4' }
   ];
   
