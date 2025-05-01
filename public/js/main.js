@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
 
       if(index === 0) videoEl.classList.add('active');
+        });
     });
     
 
@@ -342,51 +343,22 @@ document.querySelectorAll('.location-gallery .gallery-item').forEach(item => {
       // Implementar lightbox aquí
   });
 });
-// Tabs de Indumentaria
-const attireTabs = document.querySelectorAll('.attire-tab');
-attireTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-        // Remover active de todos
-        attireTabs.forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.attire-content').forEach(c => c.classList.remove('active'));
-        
-        // Agregar active al seleccionado
-        this.classList.add('active');
-        const tabId = this.getAttribute('data-tab');
-        document.getElementById(`${tabId}-tab`).classList.add('active');
-    });
-});
-// Tabs de Tareas
-const taskTabs = document.querySelectorAll('.task-tab');
-taskTabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-        // Remover active de todos
-        taskTabs.forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.task-content').forEach(c => c.classList.remove('active'));
-        
-        // Agregar active al seleccionado
-        this.classList.add('active');
-        const tabId = this.getAttribute('data-tab');
-        document.getElementById(`${tabId}-tab`).classList.add('active');
-    });
-});
+const tabButtons = document.querySelectorAll('.attire-tab');
+const tabContents = document.querySelectorAll('.attire-content');
 
-// Efecto parallax para las tarjetas Why Us
-const whyUsCards = document.querySelectorAll('.why-us-card');
-whyUsCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const xAxis = (window.innerWidth / 2 - e.pageX) / 15;
-        const yAxis = (window.innerHeight / 2 - e.pageY) / 15;
-        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        // Remover active de todos los botones
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Remover active de todos los contenidos
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Agregar active al botón clickeado
+        this.classList.add('active');
+        
+        // Mostrar el contenido correspondiente
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
     });
-    
-    card.addEventListener('mouseenter', () => {
-        card.style.transition = 'all 0.1s ease';
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'rotateY(0deg) rotateX(0deg)';
-        card.style.transition = 'all 0.5s ease';
-    });
-});
 });
