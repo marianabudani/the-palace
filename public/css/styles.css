@@ -824,10 +824,14 @@ a {
   padding: 40px;
   border-top: 4px solid var(--primary);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 30px;
   border-radius: 8px;
   backdrop-filter: blur(5px);
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
 }
 
 .location-info h3 {
