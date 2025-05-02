@@ -27,11 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
         allVideos[currentVideo].classList.add('active');
     }, 8000);
 
-    // 2. Sistema de pestañas principal
     function setupMainTabs() {
         const tabButtons = document.querySelectorAll('.attire-tab');
         const tabContents = document.querySelectorAll('.attire-content');
-
+    
         tabButtons.forEach(button => {
             button.addEventListener('click', function() {
                 // Remover active de todos los botones y contenidos
@@ -52,92 +51,112 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 3. Sistema de filtros solo por género
-    let currentGender = 'male';
+    // 3. Sistema de filtros por género (adaptado)
+let currentGender = 'male';
+
+function setupGenderFilter() {
+    const genderButtons = document.querySelectorAll('.gender-btn');
     
-    function setupGenderFilter() {
-        const genderButtons = document.querySelectorAll('.gender-btn');
-        
-        // Eventos para botones de género
-        genderButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remover active de todos los botones de género
-                genderButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Agregar active al botón clickeado
-                this.classList.add('active');
-                
-                // Actualizar filtro de género
-                currentGender = this.getAttribute('data-gender');
-                
-                // Aplicar filtros
-                applyGenderFilter();
-            });
+    // Eventos para botones de género
+    genderButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remover active de todos los botones de género
+            genderButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Agregar active al botón clickeado
+            this.classList.add('active');
+            
+            // Actualizar filtro de género
+            currentGender = this.getAttribute('data-gender');
+            
+            // Aplicar filtros
+            applyGenderFilter();
         });
-    }
+    });
+}
+
+function applyGenderFilter() {
+    const activeTab = document.querySelector('.attire-content.active');
+    if (!activeTab) return;
     
-    function applyGenderFilter() {
-        
-        const activeTab = document.querySelector('.attire-content.active');
-        if (!activeTab) return;
-        
-        // Ocultar todos primero
-        activeTab.querySelectorAll('.uniform-pair').forEach(pair => {
-            pair.style.display = 'none';
-            pair.style.overflow = 'hidden';
-            pair.style.margin = '0';
-            pair.style.padding = '0';
+    // Ocultar todos primero
+    const allPairs = activeTab.querySelectorAll('.uniform-pair');
+    allPairs.forEach(pair => {
+        pair.style.display = 'none';
+        pair.style.opacity = '0';
+        pair.style.height = '0';
+        pair.style.overflow = 'hidden';
+    });
+    
+    // Mostrar solo los del género seleccionado
+    setTimeout(() => {
+        allPairs.forEach(pair => {
+            if (pair.getAttribute('data-gender') === currentGender) {
+                pair.style.display = 'flex';
+                pair.style.opacity = '1';
+                pair.style.height = 'auto';
+                pair.style.overflow = 'visible';
+            }
         });
+    }, 50);
+}
+function initAttireSection() {
+    // Configurar el grid dinámicamente
+    const style = document.createElement('style');
+    style.textContent = `
+        .members-grid, .attire-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
         
-        // Mostrar solo los del género seleccionado
-        setTimeout(() => {
-            activeTab.querySelectorAll('.uniform-pair').forEach(pair => {
-                if (pair.getAttribute('data-gender') === currentGender) {
-                    pair.style.opacity = '1';
-                    pair.style.display = 'flex';
-                    pair.style.height = 'auto';
-                    pair.style.overflow = 'visible';
-                    pair.style.margin = '';
-                    pair.style.padding = '';
-                } else {
-                    pair.style.display = 'none';
-                }
-            });
-        }, 300);
-    }
-    function initAttireSection() {
-        // Configurar el grid
-        const style = document.createElement('style');
-        style.textContent = `
-            .attire-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-                gap: 2rem;
-                margin-top: 2rem;
+        .uniform-pair {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            transition: all 0.4s ease-out;
+        }
+        
+        .attire-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            max-width: 100%;
+        }
+        
+        .attire-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .members-grid, .attire-grid {
+                grid-template-columns: 1fr;
             }
             
             .uniform-pair {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 1.5rem;
-                margin-bottom: 2rem;
-                transition: all 0.4s ease-out;
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
-            
-            @media (max-width: 768px) {
-                .uniform-pair {
-                    grid-template-columns: 1fr;
-                }
-                
-                .attire-grid {
-                    grid-template-columns: 1fr;
-                }
-            }
-        `;
-        document.head.appendChild(style);
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Aplicar filtro inicial después de un pequeño delay
+    setTimeout(() => {
+        applyGenderFilter();
         
-        // Aplicar filtro inicial
-        setTimeout(applyGenderFilter, 100);
-    }
+        // Forzar un reflow para asegurar que las transiciones se apliquen
+        document.querySelectorAll('.uniform-pair').forEach(pair => {
+            pair.offsetHeight; // Trigger reflow
+        });
+    }, 100);
+}
     // 4. Configurar el layout para mostrar uniformes uno al lado del otro
     function setupUniformLayout() {
         const style = document.createElement('style');
@@ -384,6 +403,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar todos los componentes
     setupMainTabs();
     setupGenderFilter();
+    initAttireSection();
     setupSmoothScroll();
     setupHistoryAnimations();
     setupMetricsAnimation();
@@ -393,7 +413,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setupHeaderScrollEffect();
     setupMapHeightAdjustment();
     setupMarkerPosition();
-    initAttireSection();
     // Aplicar filtro inicial
     applyGenderFilter();
 });
