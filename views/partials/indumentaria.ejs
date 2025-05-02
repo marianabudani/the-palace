@@ -3,48 +3,164 @@
         <h2 class="section-title">ESTILO PALACE</h2>
         
         <div class="attire-tabs">
-          <button class="attire-tab active" data-tab="staff">STAFF</button>
-          <button class="attire-tab" data-tab="security">SEGURIDAD</button>
+            <button class="attire-tab active" data-tab="staff">STAFF</button>
+            <button class="attire-tab" data-tab="security">SEGURIDAD</button>
+        </div>
+
+        <!-- Selector de género -->
+        <div class="gender-selector">
+            <button class="gender-btn active" data-gender="male">Masculino</button>
+            <button class="gender-btn" data-gender="female">Femenino</button>
         </div>
   
+        <!-- Contenido STAFF -->
         <div class="attire-content active" id="staff-tab">
-            <div class="attire-grid">
-                <div class="attire-item">
-                    <i class="fas fa-tshirt"></i>
-                    <h3>BARTENDERS</h3>
-                    <ul>
-                        <li>Camisa negra ajustada</li>
-                        <li>Corbata roja Palace</li>
-                        <li>Chaleco de cuero opcional</li>
-                        <li>Accesorios permitidos (piercings, relojes)</li>
-                    </ul>
+            <div class="members-grid">
+                <!-- Bartender Masculino -->
+                <div class="uniform-pair" data-gender="male">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="/images/uniforme/bartender-male-daily.jpg" alt="Bartender Masculino Diario">
+                            <div class="member-badge">UNIFORME DIARIO</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>BARTENDER</h3>
+                            <ul class="uniform-features">
+                                <li>Chaleco de cuero opcional</li>
+                                <li>Zapatos negros formales</li>
+                                <li>Accesorios permitidos</li>
+                                <li>Look elegante y profesional</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="/images/uniforme/bartender-male-formal.jpg" alt="Bartender Masculino Eventos">
+                            <div class="member-badge">UNIFORME EVENTOS</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>BARTENDER</h3>
+                            <ul class="uniform-features">
+                                <li>Corbata roja de seda</li>
+                                <li>Zapatos de vestir italianos</li>
+                                <li>Reloj elegante permitido</li>
+                                <li>Perfume discreto</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="attire-item">
-                    <i class="fas fa-user-tie"></i>
-                    <h3>HOSTESS</h3>
-                    <ul>
-                        <li>Vestido negro elegante</li>
-                        <li>Medias de red opcionales</li>
-                        <li>Zapatos de tacón alto</li>
-                        <li>Maquillaje rojo/negro</li>
-                    </ul>
+                
+                <!-- Bartender Femenino -->
+                <div class="uniform-pair" data-gender="female">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="/images/uniforme/uniforme-bartender.png" alt="Bartender Femenino Diario">
+                            <div class="member-badge">UNIFORME DIARIO</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>BARTENDER</h3>
+                            <ul class="uniform-features">
+                                <li>Pantalón negro ajustado</li>
+                                <li>Maquillaje discreto</li>
+                                <li>Accesorios minimalistas</li>
+                                <li>Look moderno y funcional</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="/images/uniforme/uniforme-eventos.png" alt="Bartender Femenino Eventos">
+                            <div class="member-badge">UNIFORME EVENTOS</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>BARTENDER</h3>
+                            <ul class="uniform-features">
+                                <li>Medias de red opcionales</li>
+                                <li>Accesorios premium</li>
+                                <li>Maquillaje rojo/negro</li>
+                                <li>Perfume exclusivo</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
   
+        <!-- Contenido SEGURIDAD -->
         <div class="attire-content" id="security-tab">
-            <div class="attire-grid">
-                <div class="attire-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>SEGURIDAD</h3>
-                    <ul>
-                        <li>Traje negro completo</li>
-                        <li>Gafas de sol permitidas</li>
-                        <li>Comunicador en el oído</li>
-                        <li>Botas tácticas</li>
-                    </ul>
+            <div class="members-grid">
+                <!-- Seguridad Masculino -->
+                <div class="uniform-pair" data-gender="male">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="/images/uniforme/security-male-daily.jpg" alt="Seguridad Masculino Diario">
+                            <div class="member-badge">UNIFORME DIARIO</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>SEGURIDAD</h3>
+                            <ul class="uniform-features">
+                                <li>Camiseta negra ajustada</li>
+                                <li>Pantalón cargo resistente</li>
+                                <li>Guantes opcionales</li>
+                                <li>Comunicador visible</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="/images/uniforme/security-male-formal.jpg" alt="Seguridad Masculino Eventos">
+                            <div class="member-badge">UNIFORME EVENTOS</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>SEGURIDAD</h3>
+                            <ul class="uniform-features">
+                                <li>Traje negro premium</li>
+                                <li>Camisa blanca impecable</li>
+                                <li>Zapatos de vestir negros</li>
+                                <li>Gafas de sol permitidas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seguridad Femenino -->
+                <div class="uniform-pair" data-gender="female">
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="/images/uniforme/security-female-daily.jpg" alt="Seguridad Femenino Diario">
+                            <div class="member-badge">UNIFORME DIARIO</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>SEGURIDAD</h3>
+                            <ul class="uniform-features">
+                                <li>Top negro ajustado</li>
+                                <li>Pantalón cargo elástico</li>
+                                <li>Chaleco de seguridad</li>
+                                <li>Radio visible</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-image">
+                            <img src="/images/uniforme/security-female-formal.jpg" alt="Seguridad Femenino Eventos">
+                            <div class="member-badge">UNIFORME EVENTOS</div>
+                        </div>
+                        <div class="member-info">
+                            <h3>SEGURIDAD</h3>
+                            <ul class="uniform-features">
+                                <li>Traje pantalón negro</li>
+                                <li>Blusa blanca elegante</li>
+                                <li>Zapatos de tacón bajo</li>
+                                <li>Maquillaje discreto</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  </section>
+</section>
