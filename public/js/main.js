@@ -75,26 +75,69 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Función para aplicar el filtro de género
     function applyGenderFilter() {
+        
         const activeTab = document.querySelector('.attire-content.active');
         if (!activeTab) return;
         
+        // Ocultar todos primero
         activeTab.querySelectorAll('.uniform-pair').forEach(pair => {
-            if (pair.getAttribute('data-gender') === currentGender) {
-                pair.style.display = 'flex';
-                setTimeout(() => {
-                    pair.style.opacity = '1';
-                }, 50);
-            } else {
-                pair.style.opacity = '0';
-                setTimeout(() => {
-                    pair.style.display = 'none';
-                }, 300);
-            }
+            pair.style.display = 'none';
+            pair.style.overflow = 'hidden';
+            pair.style.margin = '0';
+            pair.style.padding = '0';
         });
+        
+        // Mostrar solo los del género seleccionado
+        setTimeout(() => {
+            activeTab.querySelectorAll('.uniform-pair').forEach(pair => {
+                if (pair.getAttribute('data-gender') === currentGender) {
+                    pair.style.opacity = '1';
+                    pair.style.display = 'flex';
+                    pair.style.height = 'auto';
+                    pair.style.overflow = 'visible';
+                    pair.style.margin = '';
+                    pair.style.padding = '';
+                } else {
+                    pair.style.display = 'none';
+                }
+            });
+        }, 300);
     }
-
+    function initAttireSection() {
+        // Configurar el grid
+        const style = document.createElement('style');
+        style.textContent = `
+            .attire-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+            
+            .uniform-pair {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+                transition: all 0.4s ease-out;
+            }
+            
+            @media (max-width: 768px) {
+                .uniform-pair {
+                    grid-template-columns: 1fr;
+                }
+                
+                .attire-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Aplicar filtro inicial
+        setTimeout(applyGenderFilter, 100);
+    }
     // 4. Configurar el layout para mostrar uniformes uno al lado del otro
     function setupUniformLayout() {
         const style = document.createElement('style');
@@ -341,7 +384,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar todos los componentes
     setupMainTabs();
     setupGenderFilter();
-    setupUniformLayout();
     setupSmoothScroll();
     setupHistoryAnimations();
     setupMetricsAnimation();
@@ -351,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupHeaderScrollEffect();
     setupMapHeightAdjustment();
     setupMarkerPosition();
-    
+    initAttireSection();
     // Aplicar filtro inicial
     applyGenderFilter();
 });

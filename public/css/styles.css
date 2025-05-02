@@ -568,14 +568,13 @@ a {
 }
 
 .gender-selector, .attire-type-selector {
-  display: flex;
   justify-content: center;
   gap: 10px;
   margin: 30px 0;
-  display: flex;
   padding: 0.5rem;
   border-radius: 50px;
 }
+
 
 .gender-btn, .attire-type-btn {
   padding: 0.5rem 1.5rem;
@@ -597,9 +596,7 @@ a {
 /* Grid de vestimentas */
 .attire-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
-  margin-top: 1rem;
 }
 
 .attire-item {
@@ -639,22 +636,7 @@ a {
   transition: transform 0.3s ease;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .selection-controls {
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-  }
-  
-  .attire-image-container {
-      height: 280px;
-  }
-  
-  .attire-grid {
-      grid-template-columns: 1fr;
-  }
-}
+
 /* Location Gallery - Estilo similar a la galería principal */
 .location-gallery {
   display: contents;
@@ -824,7 +806,7 @@ a {
   padding: 40px;
   border-top: 4px solid var(--primary);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 30px;
   border-radius: 8px;
   backdrop-filter: blur(5px);
@@ -934,11 +916,28 @@ a {
 /* Members Section */
 .members-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-areas:
+    "carmilla juanjo"
+    "sup1     sup2"
+    "sup3     sup3";
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  margin-top: 40px;
 }
-
+.member-card:nth-child(1) {
+  grid-area: carmilla;
+}
+.member-card:nth-child(2) {
+  grid-area: juanjo;
+}
+.member-card:nth-child(3) {
+  grid-area: sup1;
+}
+.member-card:nth-child(4) {
+  grid-area: sup2;
+}
+.member-card:nth-child(5) {
+  grid-area: sup3;
+}
 .member-card {
   background: rgba(0, 0, 0, 0.7);
   overflow: hidden;
@@ -962,11 +961,8 @@ a {
 }
 
 .member-image img {
-  width: 100%;
+  object-fit: contain;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s;
-  object-position: top center;
 }
 
 .member-card:hover .member-image img {
@@ -1043,6 +1039,13 @@ a {
   font-weight: 600;
   letter-spacing: 1px;
 }
+.uniform-pair {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease-out;
+}
 .uniform-features {
   padding-left: 1.2rem;
   margin: 0;
@@ -1054,7 +1057,9 @@ a {
   margin-bottom: 0.5rem;
   position: relative;
 }
-
+.uniform-variant, .member-card {
+  flex: 1 1 300px;
+}
 .uniform-features li:before {
   content: "•";
   color: var(--primary);
@@ -1533,19 +1538,50 @@ a {
       border-bottom: none;
   }
 
-.task-tab {
-    border-bottom: 2px solid rgba(255,255,255,0.1);
+  .task-tab {
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+  }
+
+  .task-tab.active::after {
+      display: none;
+  }
+  .member-image {
+    height: 220px;
+  }
+
+  .member-info {
+    padding: 1.2rem;
+  }
+  .selection-controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 
-.task-tab.active::after {
-    display: none;
-}
-.member-image {
-  height: 220px;
-}
+  .attire-image-container {
+      height: 280px;
+  }
 
-.member-info {
-  padding: 1.2rem;
+  .attire-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .attire-image-container {
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+  .gallery-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .gallery-item {
+    min-height: 350px;
+    max-height: none;
+  }
+  .uniform-pair {
+    flex-direction: column;
+  }
 }
 @media (max-width: 576px) {
   .section-title {
@@ -1582,5 +1618,4 @@ a {
   .location-gallery .gallery-overlay h3 {
       font-size: 1.3rem;
   }
-}
 }
