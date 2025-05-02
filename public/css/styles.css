@@ -218,11 +218,6 @@ a {
   height: 3px;
   background: var(--primary);
 }
-.dark-section {
-  background: rgba(0, 0, 0, 0.7);
-  border-top: 1px solid var(--primary);
-  border-bottom: 1px solid var(--primary);
-}
 
 .section-content {
   font-size: 1.2rem;
@@ -535,7 +530,7 @@ a {
 .attire-image-container {
   position: relative;
   width: 100%;
-  height: 400px; /* Altura más adecuada para ver cuerpo completo */
+  height: 200px; /* Altura más adecuada para ver cuerpo completo */
   overflow: hidden;
   margin-bottom: 1rem;
   border-radius: 5px;
@@ -551,12 +546,6 @@ a {
   background-color: #1a1a1a; /* Fondo para áreas sin imagen */
 }
 
-/* Contenedor principal */
-.section.dark-section {
-  background-color: #121212;
-  color: white;
-  padding: 3rem 0;
-}
 
 /* Controles de selección */
 .selection-controls {
@@ -573,6 +562,7 @@ a {
   margin: 30px 0;
   padding: 0.5rem;
   border-radius: 50px;
+  text-align: center;
 }
 
 
@@ -621,7 +611,7 @@ a {
 .attire-image-container {
   position: relative;
   width: 100%;
-  height: 350px;
+  height: 150px;
   overflow: hidden;
   margin-bottom: 1rem;
   border-radius: 5px;
@@ -939,30 +929,30 @@ a {
   grid-area: sup3;
 }
 .member-card {
-  background: rgba(0, 0, 0, 0.7);
-  overflow: hidden;
-  transition: var(--transition);
-  height: 100%; 
+  background: #000000;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .member-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(255, 0, 54, 0.3);
   border-color: var(--primary);
 }
 
 .member-image {
-  height: 250px;
+  height: 350px;
+  width: 700px;
   position: relative;
   overflow: hidden;
+  background-color: #000000; /* Fondo oscuro para áreas sin imagen */
 }
 
 .member-image img {
   object-fit: contain;
   height: 100%;
+  width: 100%;
 }
 
 .member-card:hover .member-image img {
@@ -1057,8 +1047,86 @@ a {
   margin-bottom: 0.5rem;
   position: relative;
 }
-.uniform-variant, .member-card {
+.attire-card {
+  background: #000000;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.attire-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 0, 54, 0.3);
+  border-color: var(--primary);
+}
+.attire-image {
+  height: 300px;
+  width: 400px;
+  position: relative;
+  overflow: hidden;
+  background-color: #000000; /* Fondo oscuro para áreas sin imagen */
+}
+
+.attire-image img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+
+.attire-card:hover .attire-image img {
+  transform: scale(1.1);
+}
+.uniform-variant, .member-card, .attire-card {
   flex: 1 1 300px;
+}
+.attire-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--primary);
+  color: var(--text-dark);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.attire-info {
+  padding: 20px;
+  min-height: 200px; /* Altura mínima para info */
+}
+
+.attire-info h3 {
+  margin-top: 0;
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.attire-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  color: var(--text-gray);
+  font-size: 0.9rem;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.attire-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+.attire-meta i {
+  margin-right: 5px;
+  color: var(--primary);
+  width: 20px;
+  text-align: center;
 }
 .uniform-features li:before {
   content: "•";
@@ -1082,10 +1150,17 @@ a {
 
 .attire-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-areas:
+    "op1 op2";
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
 }
-
+.attire-grid:nth-child(1) {
+  grid-area: op1;
+}
+.attire-grid:nth-child(2) {
+  grid-area: op2;
+}
 .attire-item {
   background: rgba(0, 0, 0, 0.5);
   padding: 30px;
@@ -1580,7 +1655,7 @@ a {
     max-height: none;
   }
   .uniform-pair {
-    flex-direction: column;
+    display: contents; 
   }
 }
 @media (max-width: 576px) {
