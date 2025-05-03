@@ -399,9 +399,29 @@ function initAttireSection() {
         window.addEventListener('load', adjustMarkerPosition);
         window.addEventListener('resize', adjustMarkerPosition);
     }
-
+    function setupTaskTabs() {
+        const tabButtons = document.querySelectorAll('.task-tab');
+        const tabContents = document.querySelectorAll('.task-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remover active de todos los botones y contenidos
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Agregar active al botón clickeado
+                this.classList.add('active');
+                
+                // Mostrar el contenido correspondiente
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+    }
     // Inicializar todos los componentes
     setupMainTabs();
+    setupTaskTabs();
+    setupUniformLayout();
     setupGenderFilter();
     initAttireSection();
     setupSmoothScroll();

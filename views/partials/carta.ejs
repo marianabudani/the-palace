@@ -3,29 +3,119 @@
         <h2 class="section-title">EXPERIENCIA GASTRONÓMICA</h2>
         
         <div class="menu-categories">
+            <!-- COMIDAS -->
             <div class="menu-category">
                 <h3><i class="fas fa-utensils"></i> COMIDAS</h3>
                 <ul>
-                    <li>Tabla de Embutidos</li>
-                    <li>Ceviche</li>
+                    <li class="menu-item" onclick="showPopup(event, 'tabla-embutidos')">Tabla de Embutidos</li>
+                    <li class="menu-item" onclick="showPopup(event, 'ceviche')">Ceviche</li>
                 </ul>
             </div>
   
+            <!-- BEBIDAS -->
             <div class="menu-category">
                 <h3><i class="fas fa-glass-martini-alt"></i> BEBIDAS</h3>
                 <ul>
-                    <li>Red Bro</li>
-                    <li>Cedrata</li>
+                    <li class="menu-item" onclick="showPopup(event, 'red-bro')">Red Bro</li>
+                    <li class="menu-item" onclick="showPopup(event, 'cedrata')">Cedrata</li>
                 </ul>
             </div>
   
+            <!-- ALCOHOL -->
             <div class="menu-category">
                 <h3><i class="fas fa-wine-bottle"></i> ALCOHOL</h3>
                 <ul>
-                    <li>Mojito</li>
-                    <li>Champagne Palace</span></li>
+                    <li class="menu-item" onclick="showPopup(event, 'mojito')">Mojito</li>
+                    <li class="menu-item" onclick="showPopup(event, 'champagne-palace')">Champagne Palace</li>
                 </ul>
             </div>
         </div>
     </div>
-  </section>
+</section>
+
+<!-- Popup flotante -->
+<div id="foodPopup" class="popup">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <img id="popupImage" class="popup-content">
+    <div id="popupCaption" class="caption"></div>
+</div>
+
+<style>
+    /* Estilos del popup */
+    .popup {
+        display: none;
+        position: absolute;
+        z-index: 100;
+        background: #1a1a1a;
+        border: 2px solid #ffcc00;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        max-width: 300px;
+    }
+    .popup-content {
+        width: 100%;
+        border-radius: 4px;
+    }
+    .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        color: #fff;
+        cursor: pointer;
+    }
+    .caption {
+        color: #fff;
+        text-align: center;
+        margin-top: 8px;
+        font-size: 14px;
+    }
+    .menu-item {
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+    .menu-item:hover {
+        color: #ffcc00;
+    }
+</style>
+
+<script>
+    // Muestra el popup cerca del ítem clickeado
+    function showPopup(event, itemId) {
+        const popup = document.getElementById('foodPopup');
+        const popupImg = document.getElementById('popupImage');
+        const caption = document.getElementById('popupCaption');
+        
+        // Ruta de las imágenes (ajusta según tus archivos)
+        const images = {
+            'tabla-embutidos': 'images/comidas/tabla-embutidos.png',
+            'ceviche': 'images/comidas/ceviche.png',
+            'red-bro': 'images/comidas/red-bro.png',
+            'cedrata': 'images/comidas/cedrata1.png',
+            'mojito': 'images/comidas/mojito.png',
+            'champagne-palace': 'images/comidas/champagne.webp'
+        };
+        
+        popup.style.display = "block";
+        popupImg.src = images[itemId];
+        caption.innerHTML = itemId.replace('-', ' ').toUpperCase();
+        
+        // Posiciona el popup debajo del ítem clickeado
+        const clickedItem = event.target;
+        const rect = clickedItem.getBoundingClientRect();
+        popup.style.top = `${rect.bottom + window.scrollY + 5}px`;
+        popup.style.left = `${rect.left + window.scrollX}px`;
+    }
+
+    function closePopup() {
+        document.getElementById('foodPopup').style.display = "none";
+    }
+
+    // Cierra el popup al hacer clic fuera de él
+    document.addEventListener('click', (e) => {
+        const popup = document.getElementById('foodPopup');
+        if (e.target !== popup && !popup.contains(e.target) && !e.target.classList.contains('menu-item')) {
+            closePopup();
+        }
+    });
+</script>
