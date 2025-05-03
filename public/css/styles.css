@@ -14,8 +14,8 @@
   --overlay: rgba(0, 0, 0, 0.7);
   --transition: all 0.3s ease;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 8px 15px rgba(255, 0, 54, 0.3);
-}
+    --shadow-hover: 0 8px 15px rgba(255, 0, 54, 0.3);
+  }
 
 /* Base Styles */
 * {
@@ -228,7 +228,60 @@ a {
   backdrop-filter: blur(5px);
   border-radius: 0 8px 8px 0;
 }
+/* ===== ESTILOS COMPATIBLES PARA SECCIÓN MIEMBROS ===== */
+#members.section {
+  padding: 80px 5%; /* Ajuste específico para esta sección */
+  min-height: auto;
+}
 
+#members .section-title {
+  font-size: 2.8rem; /* Tamaño especial para esta sección */
+  margin-bottom: 3rem;
+  text-align: center;
+  display: block; /* Cambio importante */
+  color: #ffffff;
+}
+
+#members .section-title::after {
+  width: 120px; /* Más largo para títulos centrados */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFD700;
+  bottom: -15px;
+}
+
+#members .section-content {
+  background: transparent; /* Anulamos el fondo del contenedor general */
+  border-left: none;
+  padding: 0;
+  backdrop-filter: none;
+}
+
+/* ===== MEDIA QUERIES ESPECÍFICOS ===== */
+@media (max-width: 992px) {
+  #members.section {
+    padding: 60px 5%;
+  }
+  
+  #members .section-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #members.section {
+    padding: 50px 3%;
+  }
+  
+  #members .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  #members .section-title::after {
+    width: 80px;
+  }
+}
 .cta-buttons {
   margin-top: 30px;
 }
@@ -526,26 +579,6 @@ a {
   color: var(--primary);
   margin-bottom: 10px;
 }
-/* CSS Modificado */
-.attire-image-container {
-  position: relative;
-  width: 100%;
-  height: 200px; /* Altura más adecuada para ver cuerpo completo */
-  overflow: hidden;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: 2px solid var(--primary);
-}
-
-.attire-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Cambiado a 'contain' para ver imagen completa */
-  object-position: top center; /* Alinea la imagen desde la parte superior */
-  transition: transform 0.3s ease;
-  background-color: #1a1a1a; /* Fondo para áreas sin imagen */
-}
-
 
 /* Controles de selección */
 .selection-controls {
@@ -555,78 +588,6 @@ a {
   margin: 1.5rem 0;
   flex-wrap: wrap;
 }
-
-.gender-selector, .attire-type-selector {
-  justify-content: center;
-  gap: 10px;
-  margin: 30px 0;
-  padding: 0.5rem;
-  border-radius: 50px;
-  text-align: center;
-}
-
-
-.gender-btn, .attire-type-btn {
-  padding: 0.5rem 1.5rem;
-  background: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.gender-btn.active, .attire-type-btn.active {
-  background: var(--primary);
-  color: var(--text-dark);
-  font-weight: bold;
-}
-
-/* Grid de vestimentas */
-.attire-grid {
-  display: grid;
-  gap: 2rem;
-}
-
-.attire-item {
-  padding: 1.5rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 0, 0, 0.2);
-  display: none; /* Ocultar por defecto */
-}
-
-.attire-item.active {
-  display: block;
-}
-
-.attire-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(255, 0, 0, 0.1);
-  border-color: var(--primary);
-}
-
-/* Contenedor de imágenes */
-.attire-image-container {
-  position: relative;
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  background-color: #1a1a1a;
-}
-
-.attire-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: top center;
-  transition: transform 0.3s ease;
-}
-
-
 /* Location Gallery - Estilo similar a la galería principal */
 .location-gallery {
   display: contents;
@@ -903,304 +864,22 @@ a {
 .location-gallery .gallery-item:hover {
   box-shadow: 0 10px 25px rgba(255, 0, 54, 0.4);
 }
-/* Members Section */
+/* === ESTILOS GENERALES DE MIEMBROS === */
 .members-grid {
   display: grid;
-  grid-template-areas:
-    "carmilla juanjo"
-    "sup1     sup2"
-    "sup3     sup3";
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
-.member-card:nth-child(1) {
-  grid-area: carmilla;
-}
-.member-card:nth-child(2) {
-  grid-area: juanjo;
-}
-.member-card:nth-child(3) {
-  grid-area: sup1;
-}
-.member-card:nth-child(4) {
-  grid-area: sup2;
-}
-.member-card:nth-child(5) {
-  grid-area: sup3;
-}
-.member-card {
-  background: #000000;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  padding: 1.5rem;
 }
 
-.member-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(255, 0, 54, 0.3);
-  border-color: var(--primary);
+/* === ANIMACIONES === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.member-image {
-  height: 350px;
-  width: 700px;
-  position: relative;
-  overflow: hidden;
-  background-color: #000000; /* Fondo oscuro para áreas sin imagen */
-}
 
-.member-image img {
-  object-fit: contain;
-  height: 100%;
-  width: 100%;
-}
 
-.member-card:hover .member-image img {
-  transform: scale(1.1);
-}
-
-.member-badge {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: var(--primary);
-  color: var(--text-dark);
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-}
-
-.member-info {
-  padding: 20px;
-  min-height: 200px; /* Altura mínima para info */
-}
-
-.member-info h3 {
-  margin-top: 0;
-  color: var(--primary);
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.member-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  color: var(--text-gray);
-  font-size: 0.9rem;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.member-meta span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-.member-meta i {
-  margin-right: 5px;
-  color: var(--primary);
-  width: 20px;
-  text-align: center;
-}
-
-/* Attire Section */
-.attire-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 30px 0;
-}
-
-.attire-tab {
-  background: none;
-  border: 2px solid var(--primary);
-  color: var(--text-light);
-  padding: 10px 25px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: var(--transition);
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-.uniform-pair {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-  transition: all 0.3s ease-out;
-}
-.uniform-features {
-  padding-left: 1.2rem;
-  margin: 0;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-}
-.uniform-features li {
-  margin-bottom: 0.5rem;
-  position: relative;
-}
-.attire-card {
-  background: #000000;
-  border-radius: 10px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.attire-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(255, 0, 54, 0.3);
-  border-color: var(--primary);
-}
-.attire-image {
-  height: 300px;
-  width: 400px;
-  position: relative;
-  overflow: hidden;
-  background-color: #000000; /* Fondo oscuro para áreas sin imagen */
-}
-
-.attire-image img {
-  object-fit: contain;
-  height: 100%;
-  width: 100%;
-}
-
-.attire-card:hover .attire-image img {
-  transform: scale(1.1);
-}
-.uniform-variant, .member-card, .attire-card {
-  flex: 1 1 300px;
-}
-.attire-badge {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: var(--primary);
-  color: var(--text-dark);
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-}
-
-.attire-info {
-  padding: 20px;
-  min-height: 200px; /* Altura mínima para info */
-}
-
-.attire-info h3 {
-  margin-top: 0;
-  color: var(--primary);
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.attire-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  color: var(--text-gray);
-  font-size: 0.9rem;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.attire-meta span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-.attire-meta i {
-  margin-right: 5px;
-  color: var(--primary);
-  width: 20px;
-  text-align: center;
-}
-.uniform-features li:before {
-  content: "•";
-  color: var(--primary);
-  position: absolute;
-  left: -1rem;
-  font-weight: bold;
-}
-.attire-tab.active, .attire-tab:hover {
-  background: var(--primary);
-  color: var(--text-dark);
-}
-
-.attire-content {
-  display: none;
-}
-
-.attire-content.active {
-  display: block;
-}
-
-.attire-grid {
-  display: grid;
-  grid-template-areas:
-    "op1 op2";
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
-.attire-grid:nth-child(1) {
-  grid-area: op1;
-}
-.attire-grid:nth-child(2) {
-  grid-area: op2;
-}
-.attire-item {
-  background: rgba(0, 0, 0, 0.5);
-  padding: 30px;
-  border-radius: 8px;
-  border-top: 4px solid var(--primary);
-  transition: var(--transition);
-}
-
-.attire-item:hover {
-  transform: translateY(-5px);
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.attire-item i {
-  font-size: 2rem;
-  color: var(--primary);
-  margin-bottom: 15px;
-}
-
-.attire-item h3 {
-  color: var(--accent);
-  margin-bottom: 15px;
-}
-
-.attire-item ul {
-  list-style: none;
-}
-
-.attire-item li {
-  margin-bottom: 8px;
-  position: relative;
-  padding-left: 20px;
-}
-
-.attire-item li::before {
-  content: '•';
-  color: var(--primary);
-  position: absolute;
-  left: 5px;
-}
 
 /* Menu Section */
 .menu-categories {
@@ -1558,9 +1237,13 @@ a {
   .members-grid {
     grid-template-columns: 1fr;
   }
-
-  .attire-tabs {
-      flex-direction: column;
+  
+  .member-image {
+    height: 200px;
+  }
+  
+  .member-meta {
+    flex-direction: column;
   }
 
   .menu-categories {
@@ -1631,20 +1314,6 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-}
-
-  .attire-image-container {
-      height: 280px;
-  }
-
-  .attire-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .attire-image-container {
-    height: auto;
-    aspect-ratio: 3 / 4;
   }
   .gallery-row {
     flex-direction: column;

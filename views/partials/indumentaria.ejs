@@ -21,9 +21,9 @@
                     <div class="attire-card">
                         <div class="attire-image">
                             <img src="/images/uniforme/bartender-male-daily.jpg" alt="Bartender Masculino Diario">
-                            <div class="member-badge">UNIFORME</div>
+                            <div class="attire-badge">UNIFORME</div>
                         </div>
-                        <div class="member-info">
+                        <div class="attire-info">
                             <h3>BARTENDER</h3>
                             <ul class="uniform-features">
                                 <li>Chaleco de cuero opcional</li>
@@ -130,7 +130,7 @@
                 <div class="uniform-pair" data-gender="female">
                     <div class="attire-card">
                         <div class="attire-image">
-                            <img src="/images/uniforme/security-female-daily.jpg" alt="Seguridad Femenino Diario">
+                            <img src="/images/uniforme/security-female-daily.png" alt="Seguridad Femenino Diario">
                             <div class="attire-badge">UNIFORME</div>
                         </div>
                         <div class="attire-info">
@@ -146,7 +146,7 @@
                     
                     <div class="attire-card">
                         <div class="attire-image">
-                            <img src="/images/uniforme/security-female-formal.jpg" alt="Seguridad Femenino Eventos">
+                            <img src="/images/uniforme/security-female-formal.png" alt="Seguridad Femenino Eventos">
                             <div class="attire-badge">EVENTOS</div>
                         </div>
                         <div class="attire-info">
@@ -164,3 +164,215 @@
         </div>
     </div>
 </section>
+<style>
+    /* ===== ESTILOS ESPECÍFICOS PARA UNIFORMES ===== */
+#attire.section {
+  padding: 80px 5%;
+}
+
+#attire .section-title {
+  font-size: 2.5rem;
+  color: #FF3333;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#attire .section-title::after {
+  background: #FF3333;
+  width: 100px;
+  height: 4px;
+  bottom: -15px;
+}
+
+/* === PESTAÑAS === */
+.attire-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.attire-tab {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  color: #000000;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.attire-tab.active {
+  background: #FF3333;
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+}
+
+/* === SELECTOR DE GÉNERO === */
+.gender-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.gender-btn {
+  padding: 8px 20px;
+  background: rgba(70, 70, 70, 0.5);
+  border: 1px solid #555;
+  border-radius: 20px;
+  color: #DDD;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gender-btn.active {
+  background: #8B0000;
+  color: white;
+  border-color: #FF3333;
+}
+
+/* === CONTENIDO DE UNIFORMES === */
+.attire-content {
+  display: none;
+}
+
+.attire-content.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.uniform-pair {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.uniform-pair[data-gender="male"],
+.uniform-pair[data-gender="female"] {
+  display: grid;
+}
+
+/* === TARJETAS DE UNIFORME === */
+.attire-card {
+  background: rgba(20, 20, 20, 0.8);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  border: 1px solid #333;
+}
+
+.attire-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 51, 51, 0.3);
+}
+
+.attire-image {
+  height: 500px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.attire-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.attire-card:hover .attire-image img {
+  transform: scale(1.05);
+}
+
+.attire-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.7);
+  color: rgb(197, 135, 135);
+  border: 1px solid #FF3333;
+}
+
+/* === INFORMACIÓN DEL UNIFORME === */
+.attire-info {
+  padding: 20px;
+}
+
+.attire-info h3 {
+  margin: 0 0 15px;
+  font-size: 1.4rem;
+  color: #FF3333;
+  text-align: center;
+}
+
+.uniform-features {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.uniform-features li {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: #DDD;
+  position: relative;
+}
+
+.uniform-features li:before {
+  content: "•";
+  color: #FF3333;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  #attire.section {
+    padding: 60px 3%;
+  }
+  
+  .uniform-pair {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .attire-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .attire-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .attire-tab {
+    width: 80%;
+    text-align: center;
+  }
+  
+  .gender-selector {
+    flex-wrap: wrap;
+  }
+}
+</style>
